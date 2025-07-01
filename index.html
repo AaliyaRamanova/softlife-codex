@@ -5,6 +5,12 @@
   <title>Soft Life Aaliya</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    @keyframes glow {
+      0% { text-shadow: 0 0 5px #ba68c8; }
+      50% { text-shadow: 0 0 20px #d4af37, 0 0 30px #fce4ec; }
+      100% { text-shadow: 0 0 5px #ba68c8; }
+    }
+
     body {
       background: linear-gradient(to bottom right, #fce4ec, #f3e5f5);
       font-family: 'Georgia', serif;
@@ -12,15 +18,31 @@
       text-align: center;
       padding: 5%;
     }
+
+    .logo-img {
+      width: 180px;
+      margin-bottom: 20px;
+      border-radius: 18px;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .logo-img:hover {
+      transform: scale(1.03);
+    }
+
     h1 {
       font-size: 3em;
       margin-bottom: 0.2em;
+      animation: glow 2s ease-in-out infinite;
     }
+
     p {
       font-size: 1.2em;
       max-width: 700px;
       margin: 0 auto 2em auto;
     }
+
     a {
       background-color: #ba68c8;
       color: white;
@@ -29,17 +51,24 @@
       text-decoration: none;
       font-weight: bold;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
     }
+
     a:hover {
       background-color: #9c27b0;
+      box-shadow: 0 0 25px #f3e5f5;
     }
   </style>
 </head>
 <body>
+
+  <!-- Logo Image -->
+  <img src="sla.png" alt="Soft Life Aaliya Logo" class="logo-img" />
+
   <h1>Welcome to Soft Life Aaliya</h1>
   <p>This is your gentle redirect from Zarina’s Maid Services & RamanovaHomes.<br> 
      A new chapter begins here — rooted in softness, strategy, and glow-up wisdom.</p>
   <a href="https://beacons.ai/softlifeaaliya" target="_blank">Enter the Soft Life</a>
+
 </body>
 </html>
-
