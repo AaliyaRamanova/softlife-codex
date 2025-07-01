@@ -2,45 +2,85 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Downloads | Soft Life Aaliya</title>
+  <title>Soft Life Aaliya</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    @keyframes glow {
+      0% { text-shadow: 0 0 5px #ba68c8; }
+      50% { text-shadow: 0 0 20px #d4af37, 0 0 30px #fce4ec; }
+      100% { text-shadow: 0 0 5px #ba68c8; }
+    }
+
     body {
-      background: linear-gradient(to bottom right, #f3e5f5, #fff0f6);
+      background: linear-gradient(to bottom right, #fce4ec, #f3e5f5);
       font-family: 'Georgia', serif;
-      color: #6a1b9a;
+      color: #4a0072;
+      text-align: center;
       padding: 5% 5% 100px;
       margin: 0;
-      text-align: center;
+    }
+
+    .logo-img {
+      width: 180px;
+      margin-bottom: 20px;
+      border-radius: 18px;
+      box-shadow: 0 0 20px #f8bbd0;
+      transition: transform 0.3s ease;
+    }
+
+    .logo-img:hover {
+      transform: scale(1.05);
     }
 
     h1 {
       font-size: 2.5em;
-      margin-bottom: 10px;
+      animation: glow 2s infinite;
     }
 
     p {
-      max-width: 600px;
-      margin: 0 auto 40px;
       font-size: 1.2em;
+      margin: 20px auto;
+      max-width: 600px;
     }
 
-    .download-btn {
+    .btn {
       display: block;
       margin: 15px auto;
-      padding: 14px 28px;
+      padding: 12px 24px;
       font-size: 1em;
       background-color: #ba68c8;
       color: white;
-      border: none;
-      border-radius: 30px;
       text-decoration: none;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      max-width: 300px;
+      border-radius: 25px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      max-width: 280px;
     }
 
-    .download-btn:hover {
-      background-color: #ab47bc;
+    .btn:hover {
+      background-color: #9c27b0;
+      transform: scale(1.05);
+    }
+
+    .floating-nav {
+      position: fixed;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff0f6;
+      border: 1px solid #e1bee7;
+      border-radius: 40px;
+      padding: 10px 20px;
+      box-shadow: 0 5px 15px rgba(186, 104, 200, 0.2);
+      z-index: 1000;
+    }
+
+    .floating-nav a {
+      margin: 0 10px;
+      font-size: 0.95em;
+      text-decoration: none;
+      color: #6a1b9a;
+      font-weight: bold;
     }
 
     footer {
@@ -54,20 +94,49 @@
       padding: 8px 0;
       box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
     }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8em;
+      }
+
+      .btn {
+        font-size: 0.95em;
+        padding: 10px 18px;
+      }
+
+      p {
+        font-size: 1em;
+        padding: 0 10px;
+      }
+
+      .logo-img {
+        width: 140px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>📥 Downloads</h1>
-  <p>All your glow-up tools, templates, and soft-start kits — ready for download or use on Canva.</p>
+  <img src="sla.png" alt="Soft Life Aaliya Logo" class="logo-img">
+  <h1>Welcome to Soft Life Aaliya</h1>
+  <p>This is your sanctuary for softness, success, and strategic glow-up energy. You're not starting over — you're starting softer, smarter, and more aligned than ever.</p>
 
-  <a href="#" class="download-btn">🧠 Angel Number Journal (PDF)</a>
-  <a href="#" class="download-btn">💗 Affirmation Lock Screens (ZIP)</a>
-  <a href="#" class="download-btn">🎀 Soft Life Starter Kit (Canva)</a>
-  <a href="#" class="download-btn">📝 Weekly Glow Plan (Google Sheets)</a>
+  <a href="/softlife-guide.html" class="btn">Enter the Soft Life</a>
+  <a href="/glowfilter.html" class="btn">✨ Try GlowFilter</a>
+  <a href="/ask-aaliya.html" class="btn">🤖 Ask Aaliya</a>
+  <a href="/downloads.html" class="btn">📥 Downloads</a>
+
+  <div class="floating-nav">
+    <a href="index.html">Home</a>
+    <a href="softlife-guide.html">Guide</a>
+    <a href="glowfilter.html">GlowFilter</a>
+    <a href="ask-aaliya.html">Ask Aaliya</a>
+    <a href="downloads.html">Downloads</a>
+  </div>
 
   <footer>
-    © 2025 Soft Life Aaliya · Download, glow, repeat 🌸
-    
+    © 2025 Soft Life Aaliya · Designed with softness + strategy 🌸
   </footer>
 </body>
 </html>
+
