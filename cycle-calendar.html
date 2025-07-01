@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cycle Calendar | Soft Life Aaliya</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: linear-gradient(to bottom right, #fff0f6, #f3e5f5);
+      color: #4a0072;
+      margin: 0;
+      padding: 40px 20px 140px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.2em;
+      color: #ba68c8;
+      margin-bottom: 20px;
+    }
+
+    .calendar {
+      max-width: 700px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .calendar label,
+    .calendar input,
+    .calendar button {
+      display: block;
+      margin: 10px auto;
+      font-size: 1em;
+    }
+
+    .calendar input {
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #e1bee7;
+    }
+
+    .calendar button {
+      padding: 12px 20px;
+      background-color: #ba68c8;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    .calendar button:hover {
+      background-color: #9c27b0;
+    }
+
+    .output {
+      margin-top: 30px;
+      font-size: 1.1em;
+    }
+
+    .floating-nav {
+      position: fixed;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff0f6;
+      border: 1px solid #e1bee7;
+      border-radius: 40px;
+      padding: 10px 20px;
+      box-shadow: 0 5px 15px rgba(186, 104, 200, 0.2);
+      z-index: 1000;
+    }
+
+    .floating-nav a {
+      margin: 0 10px;
+      font-size: 0.95em;
+      text-decoration: none;
+      color: #6a1b9a;
+      font-weight: bold;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #f8bbd0;
+      color: #4a0072;
+      font-size: 0.9em;
+      text-align: center;
+      padding: 8px 0;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+  <h1>🌸 Cycle Calendar</h1>
+  <p>Select the first day of your last period to glow-track your cycle phases.</p>
+
+  <div class="calendar">
+    <label for="startDate">🩸 First Day of Last Period:</label>
+    <input type="date" id="startDate">
+    <button onclick="calculatePhases()">Reveal My Cycle</button>
+    <div id="cycleOutput" class="output"></div>
+  </div>
+
+  <div class="floating-nav">
+    <a href="index.html">Home</a>
+    <a href="softlife-guide.html">Guide</a>
+    <a href="ask-aaliya.html">Ask Aaliya</a>
+    <a href="downloads.html">Downloads</a>
+  </div>
+
+  <footer>
+    © 2025 Soft Life Aaliya · Glow with your natural rhythm 🌕
+  </footer>
+
+  <script>
+    function calculatePhases() {
+      const startDate = new Date(document.getElementById("startDate").value);
+      if (isNaN(startDate)) return;
+
+      const today = new Date();
+      const diff = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+      const cycleDay = (diff % 28) + 1;
+      let phase = "";
+
+      if (cycleDay >= 1 && cycleDay <= 5) phase = "🩸 Menstrual — rest, reflect, and nourish.";
+      else if (cycleDay >= 6 && cycleDay <= 13) phase = "🌱 Follicular — plan, create, and explore.";
+      else if (cycleDay === 14) phase = "🌕 Ovulation — glow up, socialize, and manifest.";
+      else if (cycleDay >= 15 && cycleDay <= 28) phase = "🌖 Luteal — set boundaries, slow down, cozy up.";
+      else phase = "Cycle info not available.";
+
+      document.getElementById("cycleOutput").innerHTML =
+        `<p>You're on <strong>Day ${cycleDay}</strong> of your cycle.</p><p>${phase}</p>`;
+    }
+  </script>
+</body>
+</html>
