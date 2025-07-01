@@ -2,36 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AI Image Generator | Soft Life Aaliya</title>
+  <title>Soft Life Aaliya</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    @keyframes glow {
+      0% { text-shadow: 0 0 5px #ba68c8; }
+      50% { text-shadow: 0 0 20px #d4af37, 0 0 30px #fce4ec; }
+      100% { text-shadow: 0 0 5px #ba68c8; }
+    }
+
     body {
+      background: linear-gradient(to bottom right, #fce4ec, #f3e5f5);
       font-family: 'Georgia', serif;
-      background: linear-gradient(to bottom right, #fff0f6, #f3e5f5);
       color: #4a0072;
-      margin: 0;
-      padding: 40px 20px 140px;
       text-align: center;
+      padding: 5% 5% 100px;
+      margin: 0;
+    }
+
+    .logo-img {
+      width: 180px;
+      margin-bottom: 20px;
+      border-radius: 18px;
+      box-shadow: 0 0 20px #f8bbd0;
+      transition: transform 0.3s ease;
+    }
+
+    .logo-img:hover {
+      transform: scale(1.05);
     }
 
     h1 {
-      font-size: 2.4em;
-      color: #ba68c8;
-      margin-bottom: 10px;
+      font-size: 2.5em;
+      animation: glow 2s infinite;
     }
 
     p {
-      font-size: 1.1em;
+      font-size: 1.2em;
+      margin: 20px auto;
       max-width: 600px;
-      margin: 0 auto 30px;
     }
 
-    iframe {
-      width: 100%;
-      height: 600px;
-      border: none;
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    .btn {
+      display: block;
+      margin: 15px auto;
+      padding: 12px 24px;
+      font-size: 1em;
+      background-color: #ba68c8;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      max-width: 280px;
+    }
+
+    .btn:hover {
+      background-color: #9c27b0;
+      transform: scale(1.05);
     }
 
     .floating-nav {
@@ -55,6 +83,22 @@
       font-weight: bold;
     }
 
+    .scroll-top {
+      position: fixed;
+      right: 20px;
+      bottom: 120px;
+      background: #f8bbd0;
+      color: #4a0072;
+      border: none;
+      border-radius: 50%;
+      padding: 10px 15px;
+      font-size: 1.5em;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      z-index: 999;
+      display: none;
+    }
+
     footer {
       position: fixed;
       bottom: 0;
@@ -66,23 +110,67 @@
       padding: 8px 0;
       box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
     }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8em;
+      }
+
+      .btn {
+        font-size: 0.95em;
+        padding: 10px 18px;
+      }
+
+      p {
+        font-size: 1em;
+        padding: 0 10px;
+      }
+
+      .logo-img {
+        width: 140px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>🎨 Freestyle AI Image Generator</h1>
-  <p>Create stunning, soft visuals to match your glow-up vision. Use this free AI-powered tool to express your aesthetic, story, and soft life energy.</p>
+  <img src="sla.png" alt="Soft Life Aaliya Logo" class="logo-img">
+  <h1>Welcome to Soft Life Aaliya</h1>
+  <p>This is your sanctuary for softness, success, and strategic glow-up energy. You're not starting over — you're starting softer, smarter, and more aligned than ever.</p>
 
-  <iframe src="https://www.craiyon.com"></iframe>
+  <a href="/softlife-guide.html" class="btn">Enter the Soft Life</a>
+  <a href="/glowfilter.html" class="btn">✨ Try GlowFilter</a>
+  <a href="/ask-aaliya.html" class="btn">🤖 Ask Aaliya</a>
+  <a href="/downloads.html" class="btn">📥 Downloads</a>
+  <a href="/ai-image-generator.html" class="btn">🎨 AI Picture Maker</a>
 
   <div class="floating-nav">
     <a href="index.html">Home</a>
     <a href="softlife-guide.html">Guide</a>
-    <a href="cycle-calendar.html">Cycle</a>
+    <a href="glowfilter.html">GlowFilter</a>
+    <a href="ask-aaliya.html">Ask Aaliya</a>
     <a href="downloads.html">Downloads</a>
+    <a href="ai-image-generator.html">Image Generator</a>
   </div>
 
+  <button onclick="scrollToTop()" id="scrollTopBtn" class="scroll-top">↑</button>
+
   <footer>
-    © 2025 Soft Life Aaliya · Create beauty from your imagination 🖼️✨
+    © 2025 Soft Life Aaliya · Designed with softness + strategy 🌸
   </footer>
+
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function () {
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        scrollTopBtn.style.display = "block";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    };
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
 </body>
 </html>
