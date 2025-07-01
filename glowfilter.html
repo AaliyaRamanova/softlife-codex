@@ -2,90 +2,94 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>GlowFilter | Soft Life Aaliya</title>
+  <title>GlowFilter</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
-      background: linear-gradient(to bottom right, #fce4ec, #e8f5e9);
+      background: linear-gradient(to bottom right, #f3e5f5, #fce4ec);
       font-family: 'Georgia', serif;
-      color: #4a0072;
-      padding: 5%;
+      color: #6a1b9a;
       text-align: center;
+      padding: 5%;
     }
 
-    .glow {
-      animation: glow 3s infinite;
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      animation: pulse 2s infinite;
     }
 
-    @keyframes glow {
-      0% { text-shadow: 0 0 5px #ba68c8; }
-      50% { text-shadow: 0 0 25px #d4af37, 0 0 35px #fce4ec; }
-      100% { text-shadow: 0 0 5px #ba68c8; }
+    p {
+      font-size: 1.1em;
+      max-width: 600px;
+      margin: auto;
+      margin-bottom: 40px;
     }
 
-    .button {
+    .mode-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .mode {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 200px;
+      transition: transform 0.3s ease;
+    }
+
+    .mode:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #f8bbd0;
+    }
+
+    .mode h2 {
+      margin-top: 0;
+      font-size: 1.3em;
+      color: #ba68c8;
+    }
+
+    a.btn {
+      display: inline-block;
+      margin-top: 30px;
       padding: 12px 24px;
-      margin-top: 20px;
-      font-size: 18px;
-      border: none;
-      border-radius: 30px;
-      background: #d4af37;
+      font-size: 1em;
+      background-color: #ba68c8;
       color: white;
-      cursor: pointer;
-      box-shadow: 0 0 15px #d4af37;
-    }
-
-    .button:hover {
-      background: #ba68c8;
-    }
-
-    .section {
-      margin-top: 40px;
-    }
-
-    .nav {
-      margin-top: 40px;
-    }
-
-    .nav a {
-      margin: 0 12px;
       text-decoration: none;
-      color: #4a0072;
-      font-weight: bold;
+      border-radius: 25px;
+      transition: background-color 0.3s ease;
+    }
+
+    a.btn:hover {
+      background-color: #9c27b0;
+    }
+
+    @keyframes pulse {
+      0% { text-shadow: 0 0 5px #f48fb1; }
+      50% { text-shadow: 0 0 20px #ce93d8; }
+      100% { text-shadow: 0 0 5px #f48fb1; }
     }
   </style>
 </head>
 <body>
+  <h1>✨ Welcome to GlowFilter</h1>
+  <p>Choose your mood, filter your energy, and unlock your next-level feminine power. GlowFilter helps you date, decide, and elevate with clarity.</p>
 
-  <h1 class="glow">💫 GlowFilter</h1>
-  <h2>Filter your love life. Amplify your worth.</h2>
-
-  <div class="section">
-    <p>GlowFilter is your digital dating intuition. It helps women sort, filter, and emotionally navigate connections through six aligned personality modes.</p>
+  <div class="mode-grid">
+    <div class="mode"><h2>🧠 Logical</h2><p>When you need truth, patterns, and hard facts.</p></div>
+    <div class="mode"><h2>💓 Emotional</h2><p>When your heart needs space to feel and heal.</p></div>
+    <div class="mode"><h2>💪 Physical</h2><p>Check your body cues, boundaries, and safety.</p></div>
+    <div class="mode"><h2>🔮 Intuitive</h2><p>Trust the vibe. What does your soul already know?</p></div>
+    <div class="mode"><h2>🔥 Motivational</h2><p>Get clear, energized, and goal-aligned.</p></div>
+    <div class="mode"><h2>🎨 Creative</h2><p>Unlock fun, pleasure, and inspired new solutions.</p></div>
   </div>
 
-  <div class="section">
-    <h3>✨ Modes of GlowFilter:</h3>
-    <ul>
-      <li>🧠 Logical – Know what makes sense</li>
-      <li>💓 Emotional – Feel the red or green flags</li>
-      <li>🔥 Physical – Track arousal, safety, and chemistry</li>
-      <li>🔮 Intuitive – Ask your higher self</li>
-      <li>🚀 Motivational – Get unstuck with Spartan clarity</li>
-      <li>🎨 Creative – Romantic scripts, vision boards & flirty ideas</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <button class="button" onclick="window.location.href='https://beacons.ai/aaliyaelevated'">💌 Join the Waitlist</button>
-  </div>
-
-  <div class="nav">
-    <a href="index.html">🏠 Home</a>
-    <a href="ask-aaliya.html">Ask Aaliya</a>
-    <a href="downloads.html">Downloads</a>
-    <a href="softlife-guide.html">Soft Life Guide</a>
-  </div>
-
+  <a href="index.html" class="btn">← Back to Home</a>
 </body>
 </html>
