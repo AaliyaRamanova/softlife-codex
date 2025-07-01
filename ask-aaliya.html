@@ -75,12 +75,46 @@
     <p>Whether you're on your period, manifesting love, or processing trauma — AskAaliya holds space for you like a best friend + big sister + dream coach combo.</p>
   </div>
 
+  <!-- Aligned AF Section -->
+  <div class="section" id="alignedAFSection" style="display:none; text-align:left; padding: 20px; background:#fce4ec; border-radius: 18px; box-shadow: 0 0 10px #ba68c8;">
+    <h3>🌸 Aligned AF: Feminine Flow Tracker</h3>
+    <ul>
+      <li>🩸 <strong>Period:</strong> Ground, slow down, rest, reflect</li>
+      <li>🌱 <strong>Follicular:</strong> Fresh ideas, soft workouts, start new things</li>
+      <li>🌕 <strong>Ovulation:</strong> Social magnetism, romantic glow, peak beauty</li>
+      <li>🌖 <strong>Luteal:</strong> Boundaries, preparation, cozy self-nourishment</li>
+    </ul>
+    <p><em>Use this as a monthly guide to track your energy, moods, and soft life intentions. Add journal notes, affirmations, or AI syncing soon 💫</em></p>
+  </div>
+
+  <!-- Nutrition Section -->
+  <div class="section" id="nutritionSection" style="display:none; text-align:left; padding: 20px; background:#fff3e0; border-radius: 18px; box-shadow: 0 0 10px #ba68c8;">
+    <h3>🥑 What to Eat – Soft Life Nutrition by Cycle</h3>
+    <ul>
+      <li>🌱 <strong>Follicular:</strong> Salads, lean protein, sprouted grains, citrus & berries</li>
+      <li>🌕 <strong>Ovulation:</strong> Cooling foods like cucumber, watermelon, leafy greens, raw smoothies</li>
+      <li>🌖 <strong>Luteal:</strong> Roasted veggies, sweet potatoes, turmeric milk, magnesium-rich chocolate</li>
+      <li>🩸 <strong>Menstrual:</strong> Iron-rich stews, cooked greens, bone broth, lentils, beets, ginger tea</li>
+    </ul>
+    <p><em>Glow from within by feeding your cycle. Food is softness, not punishment 🍵</em></p>
+  </div>
+
   <div class="nav">
     <a href="index.html">🏠 Home</a>
     <a href="glowfilter.html">GlowFilter</a>
     <a href="downloads.html">Downloads</a>
     <a href="softlife-guide.html">Soft Life Guide</a>
   </div>
+
+  <script>
+    document.querySelector('.button:nth-child(3)').addEventListener('click', function() {
+      const afSection = document.getElementById('alignedAFSection');
+      const nutritionSection = document.getElementById('nutritionSection');
+      const show = afSection.style.display === 'none';
+      afSection.style.display = show ? 'block' : 'none';
+      nutritionSection.style.display = show ? 'block' : 'none';
+    });
+  </script>
 
 </body>
 </html>
