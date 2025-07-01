@@ -83,6 +83,22 @@
       font-weight: bold;
     }
 
+    .scroll-top {
+      position: fixed;
+      right: 20px;
+      bottom: 120px;
+      background: #f8bbd0;
+      color: #4a0072;
+      border: none;
+      border-radius: 50%;
+      padding: 10px 15px;
+      font-size: 1.5em;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      z-index: 999;
+      display: none;
+    }
+
     footer {
       position: fixed;
       bottom: 0;
@@ -134,9 +150,25 @@
     <a href="downloads.html">Downloads</a>
   </div>
 
+  <button onclick="scrollToTop()" id="scrollTopBtn" class="scroll-top">↑</button>
+
   <footer>
     © 2025 Soft Life Aaliya · Designed with softness + strategy 🌸
   </footer>
+
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function () {
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        scrollTopBtn.style.display = "block";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    };
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
 </body>
 </html>
-
