@@ -80,6 +80,7 @@
       document.getElementById('email').value = vault.email || '';
       document.getElementById('journal').value = vault.journal || '';
 
+      // 🔁 AskAaliya Sync
       if (window.askAaliya !== undefined) {
         window.askAaliya.setContext({
           githubToken: vault.githubToken,
@@ -95,4 +96,3 @@
   </script>
 </body>
 </html>
-
