@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Codex Vault</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: linear-gradient(to bottom right, #fbe4f0, #e6f0ff);
+      color: #2e003e;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      animation: glow 2s infinite;
+    }
+    label {
+      font-weight: bold;
+    }
+    textarea, input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: #fff0f5;
+    }
+    button {
+      padding: 0.75rem 1.5rem;
+      background: #a569bd;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    @keyframes glow {
+      0% { text-shadow: 0 0 5px #d8bfd8; }
+      50% { text-shadow: 0 0 15px #d8bfd8, 0 0 30px #f0e6fa; }
+      100% { text-shadow: 0 0 5px #d8bfd8; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Codex Vault 🔐</h1>
+
+  <label for="githubToken">GitHub Token</label>
+  <input type="password" id="githubToken" placeholder="Enter your GitHub token" />
+
+  <label for="openaiKey">OpenAI API Key</label>
+  <input type="password" id="openaiKey" placeholder="Enter your OpenAI API Key" />
+
+  <label for="email">Soft Life Email</label>
+  <input type="email" id="email" placeholder="Enter your email" />
+
+  <label for="journal">Private Journal / Notes</label>
+  <textarea id="journal" rows="6" placeholder="Write your thoughts, notes, or code here..."></textarea>
+
+  <button onclick="saveVault()">💾 Save Vault</button>
+  <button onclick="loadVault()">📥 Load Vault</button>
+
+  <script>
+    function saveVault() {
+      const vault = {
+        githubToken: document.getElementById('githubToken').value,
+        openaiKey: document.getElementById('openaiKey').value,
+        email: document.getElementById('email').value,
+        journal: document.getElementById('journal').value
+      };
+      localStorage.setItem('codexVault', JSON.stringify(vault));
+      alert('🔐 Vault Saved Safely (Local Only)');
+    }
+
+    function loadVault() {
+      const vault = JSON.parse(localStorage.getItem('codexVault')) || {};
+      document.getElementById('githubToken').value = vault.githubToken || '';
+      document.getElementById('openaiKey').value = vault.openaiKey || '';
+      document.getElementById('email').value = vault.email || '';
+      document.getElementById('journal').value = vault.journal || '';
+    }
+
+    window.onload = loadVault;
+  </script>
+</body>
+</html>
