@@ -204,7 +204,8 @@
           }
         };
       }
-      insertMoonChakraSync();
+      $1
+      insertSacredNumberMessage();
     };
 const scrollTopBtn = document.getElementById("scrollTopBtn");
     window.onscroll = function () {
@@ -218,6 +219,20 @@ const scrollTopBtn = document.getElementById("scrollTopBtn");
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  </script>
+  
+    function insertSacredNumberMessage() {
+      const sacredDays = [2, 7, 17, 27];
+      const today = new Date();
+      const day = today.getDate();
+
+      if (sacredDays.includes(day)) {
+        const message = document.createElement("div");
+        message.style.marginTop = "20px";
+        message.innerHTML = `<p style='font-size:1.1em; font-weight:bold;'>✨ Today is a sacred number day (${day})</p>
+        <p style='font-style:italic;'>Honor your glow with something aligned: say no gracefully, invest in yourself, or follow beauty without guilt.</p>`;
+        document.body.appendChild(message);
+      }
+    }
+  $1
 </body>
 </html>
