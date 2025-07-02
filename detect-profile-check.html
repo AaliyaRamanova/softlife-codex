@@ -115,4 +115,94 @@
     sugar.addEventListener('change', checkHookupEligibility);
   </script>
 </body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Soft Life Profile Check</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: linear-gradient(to right, #fce4ec, #f3e5f5);
+      color: #4a0072;
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+    textarea, input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #d4af37;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .hidden-box {
+      display: none;
+      margin-top: 20px;
+      background: #fff0f5;
+      padding: 15px;
+      border: 1px dashed #ba68c8;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>✨ Profile Match Check ✨</h1>
+
+  <div class="section">
+    <label><input type="checkbox" id="sponsor"> I am looking to sponsor a soft life</label>
+    <label><input type="checkbox" id="receiver"> I am open to gifts or support</label>
+  </div>
+
+  <div class="section">
+    <label for="boundaries">Boundaries / Preferences:</label>
+    <textarea id="boundaries" rows="5" placeholder="No phone calls before 10AM. I appreciate flowers, thoughtful gifts, and emotional leadership. I prefer weekend dates..."></textarea>
+  </div>
+
+  <button onclick="checkMatch()">Check Compatibility</button>
+
+  <div id="secretBox" class="hidden-box">
+    💌 Private Gift Box Unlocked!  
+    <p>Link this to your wishlist or donation page 💎</p>
+  </div>
+
+  <script>
+    function checkMatch() {
+      const sponsor = document.getElementById('sponsor').checked;
+      const receiver = document.getElementById('receiver').checked;
+      const secretBox = document.getElementById('secretBox');
+
+      if (sponsor && receiver) {
+        secretBox.style.display = 'block';
+      } else {
+        secretBox.style.display = 'none';
+        alert("⚠️ To unlock private gift box, both sponsor and receiver must confirm.");
+      }
+    }
+  </script>
+
+</body>
 </html>
+
