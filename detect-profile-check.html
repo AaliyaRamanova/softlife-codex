@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Soft Life | Profile Check</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: #fff0f5;
+      color: #4b004b;
+      padding: 20px;
+    }
+
+    .profile-check-container {
+      max-width: 600px;
+      margin: auto;
+      background: #ffffffcc;
+      border-radius: 16px;
+      box-shadow: 0 0 12px #d4af37;
+      padding: 30px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .toggle-group {
+      margin: 15px 0;
+    }
+
+    label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    .discreet-button {
+      display: none;
+      margin-top: 20px;
+      background: #ff69b4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .activated {
+      display: block;
+    }
+
+    .donation-box {
+      margin-top: 30px;
+      border-top: 1px dashed #d4af37;
+      padding-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-check-container">
+    <h2>🩷 Profile Interest Check</h2>
+
+    <div class="toggle-group">
+      <label>
+        Are you a Sponsor?
+        <input type="checkbox" id="sponsorCheck" />
+      </label>
+      <label>
+        Are you a Sugar Baby?
+        <input type="checkbox" id="sugarBabyCheck" />
+      </label>
+      <label>
+        Share Health Records?
+        <input type="checkbox" id="healthShare" />
+      </label>
+    </div>
+
+    <button id="hookupBtn" class="discreet-button">💫 Hookup Request</button>
+
+    <div class="donation-box">
+      <h3>🎁 Fans + Donation Gift Box</h3>
+      <p>Send a gift or token of appreciation. This is not a sticker—it’s a private tip option.</p>
+      <button onclick="alert('Redirecting to Donation Gift Box...')">Open Gift Box</button>
+    </div>
+
+    <div class="coming-soon">
+      <h4>✨ Coming Soon</h4>
+      <ul>
+        <li>🧠 Therapist matching (like BetterHelp but better)</li>
+        <li>🍄 Shroom & microdosing guides</li>
+        <li>💍 Wedding collabs & planning board</li>
+      </ul>
+      <p>Explore more at <a href="softlife-healing.html">softlife-healing.html</a></p>
+    </div>
+  </div>
+
+  <script>
+    const sponsor = document.getElementById('sponsorCheck');
+    const sugar = document.getElementById('sugarBabyCheck');
+    const hookupBtn = document.getElementById('hookupBtn');
+
+    function checkHookupEligibility() {
+      if (sponsor.checked && sugar.checked) {
+        hookupBtn.classList.add('activated');
+      } else {
+        hookupBtn.classList.remove('activated');
+      }
+    }
+
+    sponsor.addEventListener('change', checkHookupEligibility);
+    sugar.addEventListener('change', checkHookupEligibility);
+  </script>
+</body>
+</html>
