@@ -25,3 +25,6 @@ This is the official digital ecosystem hub for **Soft Life Aaliya** — an inten
 © 2025 Aaliya Ramanova. All rights reserved.  
 Designed under moonlight, guided by intuition 🌕
 
+Trigger GitHub Pages rebuild
+
+ 
