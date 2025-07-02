@@ -65,4 +65,34 @@
     function saveVault() {
       const vault = {
         githubToken: document.getElementById('githubToken').value,
-        openaiKey: document.getElementById('open
+        openaiKey: document.getElementById('openaiKey').value,
+        email: document.getElementById('email').value,
+        journal: document.getElementById('journal').value
+      };
+      localStorage.setItem('codexVault', JSON.stringify(vault));
+      alert('🔐 Vault Saved Safely (Local Only)');
+    }
+
+    function loadVault() {
+      const vault = JSON.parse(localStorage.getItem('codexVault')) || {};
+      document.getElementById('githubToken').value = vault.githubToken || '';
+      document.getElementById('openaiKey').value = vault.openaiKey || '';
+      document.getElementById('email').value = vault.email || '';
+      document.getElementById('journal').value = vault.journal || '';
+
+      if (window.askAaliya !== undefined) {
+        window.askAaliya.setContext({
+          githubToken: vault.githubToken,
+          openaiKey: vault.openaiKey,
+          email: vault.email,
+          journal: vault.journal
+        });
+        console.log("🧠 AskAaliya context synced from Codex Vault");
+      }
+    }
+
+    window.onload = loadVault;
+  </script>
+</body>
+</html>
+
