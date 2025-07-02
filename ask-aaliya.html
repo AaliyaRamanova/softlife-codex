@@ -2,119 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Ask Aaliya | Soft Life Aaliya</title>
+  <title>Ask Aaliya</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
-      background: linear-gradient(to bottom right, #fff3e0, #fce4ec);
       font-family: 'Georgia', serif;
-      color: #6a1b9a;
-      padding: 5%;
-      text-align: center;
-    }
-
-    .glow {
-      animation: glow 3s infinite;
-    }
-
-    @keyframes glow {
-      0% { text-shadow: 0 0 5px #f8bbd0; }
-      50% { text-shadow: 0 0 25px #d4af37, 0 0 35px #fce4ec; }
-      100% { text-shadow: 0 0 5px #f8bbd0; }
-    }
-
-    .button {
-      padding: 12px 24px;
-      margin: 10px;
-      font-size: 18px;
-      border: none;
-      border-radius: 30px;
-      background: #ba68c8;
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 0 15px #ba68c8;
-    }
-
-    .button:hover {
-      background: #d4af37;
-    }
-
-    .section {
-      margin-top: 40px;
-    }
-
-    .nav {
-      margin-top: 40px;
-    }
-
-    .nav a {
-      margin: 0 12px;
-      text-decoration: none;
+      background: linear-gradient(to bottom right, #fce4ec, #e0f7fa);
       color: #4a0072;
-      font-weight: bold;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      font-size: 2.5em;
+      animation: pulse 3s infinite;
+    }
+    .mood {
+      font-size: 1.2em;
+      margin-top: 30px;
+      padding: 20px;
+      background: #ffffffcc;
+      border-radius: 20px;
+      box-shadow: 0 0 10px #d4af37;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @keyframes pulse {
+      0% { text-shadow: 0 0 5px #ba68c8; }
+      50% { text-shadow: 0 0 20px #f06292; }
+      100% { text-shadow: 0 0 5px #ba68c8; }
     }
   </style>
 </head>
 <body>
-
-  <h1 class="glow">🪞 Ask Aaliya</h1>
-  <h2>Your Soft Life AI Companion</h2>
-
-  <div class="section">
-    <p>AskAaliya is your intuitive, emotional, and spiritual AI support system — designed to help you glow, plan, and protect your peace with grace.</p>
-  </div>
-
-  <div class="section">
-    <button class="button">💖 Hype Me</button>
-    <button class="button">👁 See Me</button>
-    <button class="button">🌸 Aligned AF</button>
-    <button class="button">🧘🏽 Emotional Check-In</button>
-  </div>
-
-  <div class="section">
-    <p>Whether you're on your period, manifesting love, or processing trauma — AskAaliya holds space for you like a best friend + big sister + dream coach combo.</p>
-  </div>
-
-  <!-- Aligned AF Section -->
-  <div class="section" id="alignedAFSection" style="display:none; text-align:left; padding: 20px; background:#fce4ec; border-radius: 18px; box-shadow: 0 0 10px #ba68c8;">
-    <h3>🌸 Aligned AF: Feminine Flow Tracker</h3>
-    <ul>
-      <li>🩸 <strong>Period:</strong> Ground, slow down, rest, reflect</li>
-      <li>🌱 <strong>Follicular:</strong> Fresh ideas, soft workouts, start new things</li>
-      <li>🌕 <strong>Ovulation:</strong> Social magnetism, romantic glow, peak beauty</li>
-      <li>🌖 <strong>Luteal:</strong> Boundaries, preparation, cozy self-nourishment</li>
-    </ul>
-    <p><em>Use this as a monthly guide to track your energy, moods, and soft life intentions. Add journal notes, affirmations, or AI syncing soon 💫</em></p>
-  </div>
-
-  <!-- Nutrition Section -->
-  <div class="section" id="nutritionSection" style="display:none; text-align:left; padding: 20px; background:#fff3e0; border-radius: 18px; box-shadow: 0 0 10px #ba68c8;">
-    <h3>🥑 What to Eat – Soft Life Nutrition by Cycle</h3>
-    <ul>
-      <li>🌱 <strong>Follicular:</strong> Salads, lean protein, sprouted grains, citrus & berries</li>
-      <li>🌕 <strong>Ovulation:</strong> Cooling foods like cucumber, watermelon, leafy greens, raw smoothies</li>
-      <li>🌖 <strong>Luteal:</strong> Roasted veggies, sweet potatoes, turmeric milk, magnesium-rich chocolate</li>
-      <li>🩸 <strong>Menstrual:</strong> Iron-rich stews, cooked greens, bone broth, lentils, beets, ginger tea</li>
-    </ul>
-    <p><em>Glow from within by feeding your cycle. Food is softness, not punishment 🍵</em></p>
-  </div>
-
-  <div class="nav">
-    <a href="index.html">🏠 Home</a>
-    <a href="glowfilter.html">GlowFilter</a>
-    <a href="downloads.html">Downloads</a>
-    <a href="softlife-guide.html">Soft Life Guide</a>
+  <h1>🌙 Ask Aaliya</h1>
+  <div class="mood" id="moodResponse">
+    Checking your energy...
   </div>
 
   <script>
-    document.querySelector('.button:nth-child(3)').addEventListener('click', function() {
-      const afSection = document.getElementById('alignedAFSection');
-      const nutritionSection = document.getElementById('nutritionSection');
-      const show = afSection.style.display === 'none';
-      afSection.style.display = show ? 'block' : 'none';
-      nutritionSection.style.display = show ? 'block' : 'none';
-    });
-  </script>
+    const params = new URLSearchParams(window.location.search);
+    const mood = params.get("mode");
+    const responseBox = document.getElementById("moodResponse");
 
+    const responses = {
+      logical: "🧠 You're in Logical Mode. Zoom out. Does his behavior match his promises over time?",
+      emotional: "💓 Emotional Mode. You’re safe to feel. Your softness is not a weakness.",
+      physical: "💪 Physical Mode. Let’s check your body and boundaries. Are your needs respected?",
+      intuitive: "🔮 Intuitive Mode. Your body knows. Trust your first instinct.",
+      motivational: "🔥 Motivational Mode. We don’t settle when we’re glowing. Stay focused.",
+      creative: "🎨 Creative Mode. Are you in love with the person — or the story?",
+    };
+
+    responseBox.innerText = responses[mood] || "✨ Tell me your vibe by choosing a GlowFilter first.";
+  </script>
 </body>
 </html>
