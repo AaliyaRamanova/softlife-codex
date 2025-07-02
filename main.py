@@ -1,7 +1,11 @@
 # main.py – Flask backend for Soft Life Codex
 
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template, send_from_directory, jsonify
+from dotenv import load_dotenv
 import os
+
+# Load your .env vault
+load_dotenv()
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
@@ -55,6 +59,23 @@ def ai_image():
 @app.route('/static/<path:path>')
 def send_static(path):
     return send_from_directory('static', path)
+
+# 🧠 Vault test route
+@app.route('/check-vault')
+def check_vault():
+    github_token = os.getenv("GITHUB_TOKEN")
+    openai_key = os.getenv("OPENAI_API_KEY")
+    email = os.getenv("SOFTLIFE_EMAIL")
+
+    if github_token and openai_key and email:
+        return jsonify({"status": "🧠 Vault Synced!", "email": email})
+    else:
+        return jsonify({
+            "status": "❌ Vault Not Found",
+            "GITHUB_TOKEN": github_token,
+            "OPENAI_API_KEY": openai_key,
+            "SOFTLIFE_EMAIL": email
+        })
 
 if __name__ == '__main__':
     app.run(debug=True)
