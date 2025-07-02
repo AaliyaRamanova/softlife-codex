@@ -29,3 +29,4 @@ Trigger GitHub Pages rebuild
 
  
 # Trigger deploy
+Trigger GitHub Pages rebuild
