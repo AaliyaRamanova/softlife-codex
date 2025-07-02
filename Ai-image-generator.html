@@ -166,8 +166,47 @@
     © 2025 Soft Life Aaliya · Designed with softness + strategy 🌸
   </footer>
 
-  <script>
-    const scrollTopBtn = document.getElementById("scrollTopBtn");
+  $1
+    // 🌙 Dynamic Moon + Chakra Sync
+    const moonSigns = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"];
+    const chakraColors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+
+    const moonChakraReplies = {
+      "Cancer": "Today the moon is in Cancer 🌙 — soften your home, feel your feelings, and sip something warm.",
+      "Scorpio": "Scorpio moon energy 🔮 — dive deep, journal honestly, and release old fears with grace.",
+      "Libra": "Libra moon ☁️ — wear your softest outfit, align your space, and balance your yes/no.",
+      "Leo": "The moon is roaring in Leo 🦁 — be seen, sparkle, and post that photo you were hesitating on."
+      // Add more as needed...
+    };
+
+    function insertMoonChakraSync() {
+      const replyArea = document.getElementById("cycleOutput") || document.querySelector(".output") || document.body;
+      const today = new Date();
+      const moonIndex = today.getDate() % moonSigns.length;
+      const chakraIndex = today.getDay() % chakraColors.length;
+      const moonSign = moonSigns[moonIndex];
+      const chakra = chakraColors[chakraIndex];
+      const msg = moonChakraReplies[moonSign] || `The moon is in ${moonSign}. Align with your truth.`;
+      const chakraMsg = `Today's chakra color: <strong>${chakra}</strong>. Wear it, breathe it, become it.`;
+
+      const block = document.createElement("div");
+      block.innerHTML = `<p style='font-size:1.05em;margin-top:20px;'>${msg}</p><p style='color:${chakra};font-weight:bold;'>${chakraMsg}</p>`;
+      replyArea.appendChild(block);
+    }
+
+    window.onload = function () {
+      if (typeof scrollTopBtn !== "undefined") {
+        window.onscroll = function () {
+          if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            scrollTopBtn.style.display = "block";
+          } else {
+            scrollTopBtn.style.display = "none";
+          }
+        };
+      }
+      insertMoonChakraSync();
+    };
+const scrollTopBtn = document.getElementById("scrollTopBtn");
     window.onscroll = function () {
       if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
         scrollTopBtn.style.display = "block";
