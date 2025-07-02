@@ -40,14 +40,40 @@
     .vault-button:hover {
       transform: scale(1.05);
     }
+
+    .nav-links {
+      margin-top: 40px;
+    }
+
+    .nav-links a {
+      display: inline-block;
+      margin: 10px 12px;
+      text-decoration: none;
+      color: #4a0072;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
+
   <h1>Welcome to Soft Life Codex 🌙</h1>
 
   <button class="vault-button" onclick="checkVault()">
     🔐 Test Vault Sync
   </button>
+
+  <div class="nav-links">
+    <a href="ask-aaliya.html">Ask Aaliya</a>
+    <a href="glowfilter.html">GlowFilter</a>
+    <a href="softlife-guide.html">Workshop</a>
+    <a href="downloads.html">Downloads</a>
+    <a href="divine-domestic.html">Divine Domestic</a>
+  </div>
 
   <script>
     async function checkVault() {
@@ -59,8 +85,7 @@
         alert('🚨 Error checking Vault connection');
       }
     }
-    \<!-- Trigger rebuild -->
-
   </script>
+
 </body>
 </html>
