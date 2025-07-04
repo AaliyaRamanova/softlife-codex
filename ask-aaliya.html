@@ -46,6 +46,17 @@
       color: #4a0072;
       font-weight: bold;
     }
+    .advice-box, .journal-box {
+      display: none;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff;
+      color: #4a0072;
+      border-radius: 15px;
+      max-width: 600px;
+      box-shadow: 0 0 15px #f8bbd0;
+      text-align: left;
+    }
     textarea {
       width: 100%;
       height: 100px;
@@ -55,6 +66,20 @@
       font-size: 1em;
       margin-top: 10px;
     }
+    #gptReply.typing::after {
+      content: '';
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: #ba68c8;
+      border-radius: 50%;
+      animation: blink 1s infinite;
+      margin-left: 6px;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
   </style>
 </head>
 <body>
@@ -62,21 +87,63 @@
   <h2>Your Soft Life AI Companion</h2>
 
   <div class="section">
+    <button class="button" onclick="showAdvice('hype')">💖 Hype Me</button>
+    <button class="button" onclick="showAdvice('see')">👁 See Me</button>
+    <button class="button" onclick="showAdvice('checkin')">🧘🏽 Emotional Check-In</button>
+    <button class="button" onclick="toggleJournal()">📓 Journal</button>
+  </div>
+
+  <div class="section">
+    <div id="adviceHype" class="advice-box">
+      <h3>💖 Hype Mode</h3>
+      <p>You’re not just pretty — you’re purposeful. Keep showing up like the universe wrote poetry about your glow.</p>
+    </div>
+
+    <div id="adviceSee" class="advice-box">
+      <h3>👁 I See You</h3>
+      <p>I see your softness and strength. You don’t need to do more to be worthy — you already are.</p>
+    </div>
+
+    <div id="adviceCheckin" class="advice-box">
+      <h3>🧘🏽 Emotional Check-In</h3>
+      <p>Inhale. Exhale. What do you need today? Safety? Play? Boundaries? Let it rise. You are your safest home.</p>
+    </div>
+  </div>
+
+  <div id="journalSection" class="journal-box">
+    <h3>📓 Your Journal</h3>
+    <textarea id="journalInput" placeholder="Write your thoughts..."></textarea>
+    <button class="button" onclick="saveJournal()">💾 Save Entry</button>
+    <p id="journalStatus"></p>
+  </div>
+
+  <div class="section">
     <h3>🧠 Ask Aaliya (GPT)</h3>
     <textarea id="gptPrompt" placeholder="Type your real question..."></textarea><br>
     <button class="button" onclick="askAaliyaGPT()">💬 Ask GPT</button>
-    <div id="gptReply" style="margin-top: 20px; max-width: 600px; margin: auto; font-style: italic; color: #4a0072;"></div>
-  </div>
-
-  <div class="nav">
-    <a href="index.html">🏠 Home</a>
-    <a href="glowfilter.html">🌈 GlowFilter</a>
-    <a href="ask-aaliya.html">💬 Ask Aaliya</a>
-    <a href="downloads.html">📥 Downloads</a>
-    <a href="softlife-guide.html">📚 Soft Life Guide</a>
+    <div id="gptReply" class="typing" style="margin-top: 20px; max-width: 600px; margin: auto; font-style: italic; color: #4a0072;"></div>
   </div>
 
   <script>
+    function showAdvice(type) {
+      const boxes = ['adviceHype', 'adviceSee', 'adviceCheckin'];
+      boxes.forEach(id => document.getElementById(id).style.display = 'none');
+      document.getElementById(`advice${type.charAt(0).toUpperCase() + type.slice(1)}`).style.display = 'block';
+    }
+
+    function toggleJournal() {
+      const journal = document.getElementById('journalSection');
+      journal.style.display = journal.style.display === 'block' ? 'none' : 'block';
+      document.getElementById('journalInput').value = localStorage.getItem('askAaliyaJournal') || '';
+      document.getElementById('journalStatus').textContent = '';
+    }
+
+    function saveJournal() {
+      const text = document.getElementById('journalInput').value.trim();
+      localStorage.setItem('askAaliyaJournal', text);
+      document.getElementById('journalStatus').textContent = '✨ Saved to memory.';
+    }
+
     async function askAaliyaGPT() {
       const prompt = document.getElementById("gptPrompt").value.trim();
       const outputBox = document.getElementById("gptReply");
@@ -87,6 +154,7 @@
       }
 
       const mode = localStorage.getItem("glowModeSpartan") || localStorage.getItem("glowMode") || "Creative";
+      outputBox.classList.add("typing");
       outputBox.innerText = "✨ Typing Ask Aaliya's insight...";
 
       try {
@@ -95,16 +163,15 @@
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({
-            prompt: prompt,
-            mode: mode
-          })
+          body: JSON.stringify({ prompt, mode })
         });
 
         const data = await response.json();
         const reply = data.reply || "💤 Something didn’t vibe right. Try again.";
+        outputBox.classList.remove("typing");
         outputBox.innerText = reply;
       } catch (err) {
+        outputBox.classList.remove("typing");
         outputBox.innerText = "⚠️ Error reaching Ask Aaliya. Try again later.";
         console.error(err);
       }
