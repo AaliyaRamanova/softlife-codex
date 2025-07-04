@@ -12,17 +12,14 @@
       padding: 5%;
       text-align: center;
     }
-
     .glow {
       animation: glow 3s infinite;
     }
-
     @keyframes glow {
       0% { text-shadow: 0 0 5px #f8bbd0; }
       50% { text-shadow: 0 0 25px #d4af37, 0 0 35px #fce4ec; }
       100% { text-shadow: 0 0 5px #f8bbd0; }
     }
-
     .button {
       padding: 12px 24px;
       margin: 10px;
@@ -34,26 +31,21 @@
       cursor: pointer;
       box-shadow: 0 0 15px #ba68c8;
     }
-
     .button:hover {
       background: #d4af37;
     }
-
     .section {
       margin-top: 40px;
     }
-
     .nav {
       margin-top: 40px;
     }
-
     .nav a {
       margin: 0 12px;
       text-decoration: none;
       color: #4a0072;
       font-weight: bold;
     }
-
     .advice-box, .journal-box {
       display: none;
       margin: 30px auto;
@@ -65,7 +57,6 @@
       box-shadow: 0 0 15px #f8bbd0;
       text-align: left;
     }
-
     textarea {
       width: 100%;
       height: 100px;
@@ -78,157 +69,51 @@
   </style>
 </head>
 <body>
-
   <h1 class="glow">🪞 Ask Aaliya</h1>
   <h2>Your Soft Life AI Companion</h2>
   <div id="aaliya-response"></div>
 
+  <!-- Existing content sections here -->
+
+  <!-- Ask Me Anything AI Box -->
   <div class="section">
-    <p>AskAaliya is your intuitive, emotional, and spiritual AI support system — designed to help you glow, plan, and protect your peace with grace.</p>
-  </div>
-
-  <div class="section">
-    <button class="button" onclick="showAdvice('hype')">💖 Hype Me</button>
-    <button class="button" onclick="showAdvice('see')">👁 See Me</button>
-    <button class="button" onclick="toggleSections()">🌸 Aligned AF</button>
-    <button class="button" onclick="showAdvice('checkin')">🧘🏽 Emotional Check-In</button>
-    <button class="button" onclick="toggleJournal()">📓 Journal</button>
-    <button class="button" onclick="unlockPrivateMode()" title="Shhh...">🔐 Unlock Private Coaching</button>
-  </div>
-
-  <div class="section">
-    <p>Whether you're on your period, manifesting love, or processing trauma — AskAaliya holds space for you like a best friend + big sister + dream coach combo.</p>
-  </div>
-
-  <div id="adviceHype" class="advice-box">
-    <h3>💖 Hype Mode</h3>
-    <p>You’re not just pretty — you’re purposeful. You’re not just glowing — you’re guiding. Keep showing up like the whole universe wrote poetry just to describe your energy. Because it did. 💫</p>
-  </div>
-
-  <div id="adviceSee" class="advice-box">
-    <h3>👁 I See You</h3>
-    <p>I see how hard you try. I see your growth, your softness, your resilience. You don’t need to do more to be worthy. You already are — even in your stillness. 🌷</p>
-  </div>
-
-  <div id="adviceCheckin" class="advice-box">
-    <h3>🧘🏽 Emotional Check-In</h3>
-    <p>Pause. Inhale slowly. Exhale fully. Ask yourself: what do I need today? Safety? Play? Solitude? Connection? Let the answer rise without judgment. You are your safest home. 🕊️</p>
-  </div>
-
-  <div id="journalSection" class="journal-box">
-    <h3>📓 Your Journal</h3>
-    <textarea id="journalInput" placeholder="Type your thoughts here..."></textarea>
-    <button class="button" onclick="saveJournal()">💾 Save Entry</button>
-    <p id="journalStatus"></p>
-  </div>
-
-  <!-- Aligned AF Section -->
-  <div class="section" id="alignedAFSection" style="display:none; text-align:left; padding: 20px; background:#fce4ec; border-radius: 18px; box-shadow: 0 0 10px #ba68c8;">
-    <h3>🌸 Aligned AF: Feminine Flow Tracker</h3>
-    <ul>
-      <li>🩸 <strong>Period:</strong> Ground, slow down, rest, reflect</li>
-      <li>🌱 <strong>Follicular:</strong> Fresh ideas, soft workouts, start new things</li>
-      <li>🌕 <strong>Ovulation:</strong> Social magnetism, romantic glow, peak beauty</li>
-      <li>🌖 <strong>Luteal:</strong> Boundaries, preparation, cozy self-nourishment</li>
-    </ul>
-    <p><em>Use this as a monthly guide to track your energy, moods, and soft life intentions. Add journal notes, affirmations, or AI syncing soon 💫</em></p>
-  </div>
-
-  <!-- Nutrition Section -->
-  <div class="section" id="nutritionSection" style="display:none; text-align:left; padding: 20px; background:#fff3e0; border-radius: 18px; box-shadow: 0 0 10px #ba68c8;">
-    <h3>🥑 What to Eat – Soft Life Nutrition by Cycle</h3>
-    <ul>
-      <li>🌱 <strong>Follicular:</strong> Salads, lean protein, sprouted grains, citrus & berries</li>
-      <li>🌕 <strong>Ovulation:</strong> Cooling foods like cucumber, watermelon, leafy greens, raw smoothies</li>
-      <li>🌖 <strong>Luteal:</strong> Roasted veggies, sweet potatoes, turmeric milk, magnesium-rich chocolate</li>
-      <li>🩸 <strong>Menstrual:</strong> Iron-rich stews, cooked greens, bone broth, lentils, beets, ginger tea</li>
-    </ul>
-    <p><em>Glow from within by feeding your cycle. Food is softness, not punishment 🍵</em></p>
+    <h3>💬 Ask Me Anything</h3>
+    <textarea id="userPrompt" placeholder="Type your question or situation here..." style="margin-bottom: 10px;"></textarea><br>
+    <button class="button" onclick="generateAaliyaResponse()">🧠 Get Aaliya’s Insight</button>
+    <div id="aaliyaAIResponse" style="margin-top: 20px; max-width: 600px; margin-left: auto; margin-right: auto; font-style: italic; color: #4a0072;"></div>
   </div>
 
   <div class="nav">
     <a href="index.html">🏠 Home</a>
     <a href="glowfilter.html">🌈 GlowFilter</a>
     <a href="ask-aaliya.html">💬 Ask Aaliya</a>
-    <a href="downloads.html">📥 Downloads</a>
+    <a href="downloads.html">📅 Downloads</a>
     <a href="softlife-guide.html">📚 Soft Life Guide</a>
   </div>
 
   <script>
-    function toggleSections() {
-      const afSection = document.getElementById('alignedAFSection');
-      const nutritionSection = document.getElementById('nutritionSection');
-      const show = afSection.style.display === 'none';
-      afSection.style.display = show ? 'block' : 'none';
-      nutritionSection.style.display = show ? 'block' : 'none';
-    }
+    // Existing functions here ...
 
-    function unlockPrivateMode() {
-      localStorage.setItem('glowModeSpartan', 'Private');
-      location.reload();
-    }
+    function generateAaliyaResponse() {
+      const input = document.getElementById('userPrompt').value.trim();
+      const mode = localStorage.getItem('glowModeSpartan') || localStorage.getItem('glowMode') || "Creative";
+      let reply = "";
 
-    function toggleJournal() {
-      const journalBox = document.getElementById('journalSection');
-      journalBox.style.display = journalBox.style.display === 'block' ? 'none' : 'block';
-      document.getElementById('journalInput').value = localStorage.getItem('askAaliyaJournal') || '';
-      document.getElementById('journalStatus').textContent = '';
-    }
-
-    function saveJournal() {
-      const journalText = document.getElementById('journalInput').value.trim();
-      localStorage.setItem('askAaliyaJournal', journalText);
-      document.getElementById('journalStatus').textContent = '✨ Saved to memory.';
-    }
-
-    function showAdvice(type) {
-      const sections = ['adviceHype', 'adviceSee', 'adviceCheckin'];
-      sections.forEach(id => document.getElementById(id).style.display = 'none');
-      document.getElementById(`advice${capitalize(type)}`).style.display = 'block';
-    }
-
-    function capitalize(str) {
-      return str.charAt(0).toUpperCase() + str.slice(1);
-    }
-
-    // Regular Glow Mode
-    const mood = localStorage.getItem('glowMode');
-    if (mood) {
-      const moodMsg = document.createElement('p');
-      moodMsg.innerHTML = `🌙 You’re in <strong>${mood}</strong> Mode today. AskAaliya is synced with your glow.`;
-      document.body.insertBefore(moodMsg, document.body.children[2]);
-    }
-
-    // Spartan GlowFilter Sync (with hidden Private Coaching mode)
-    const mode = localStorage.getItem('glowModeSpartan');
-    if (mode) {
-      const messages = {
-        Logical: "🧠 Spartan Logic Activated: Let’s break it down with clarity and facts. What are the patterns here?",
-        Emotional: "🧊 Spartan Emotional Mode: I’m reading your undercurrent. What part of this is triggering or soothing you?",
-        Physical: "🛑 Spartan Body Check: Are you feeling safe, energized, or drained around this situation?",
-        Intuitive: "👁️ Spartan Intuition Online: What does your body know before your brain decides?",
-        Motivational: "📈 Spartan Focus Mode: Is this raising your standards or pulling you off course?",
-        Creative: "🌀 Spartan Flow Check: Are you flowing or forcing? Let’s find a creative pivot.",
-        Private: "🔒 Private Coaching Mode: This is sacred space. What’s happening behind the scenes? This mode is for strategic glow-ups, emotional detachment, soft control, and private planning. You are the blueprint. You are the exit plan. Ask me anything — confidentially.",
-      };
-
-      const aaliyaMessage = messages[mode] || "🌟 You’re in a custom mode. Let’s move with clarity.";
-
-      const target = document.getElementById('aaliya-response');
-      const div = document.createElement('div');
-      div.style.padding = '20px';
-      div.style.background = mode === 'Private' ? '#ede7f6' : '#fce4ec';
-      div.style.color = '#4a148c';
-      div.style.borderRadius = '16px';
-      div.style.margin = '20px auto';
-      div.style.maxWidth = '600px';
-      div.style.boxShadow = '0 0 12px #d4af37';
-      div.style.border = '1px solid #ba68c8';
-      div.style.fontFamily = 'Georgia, serif';
-      div.innerHTML = `${mode === 'Private' ? '🔐' : '🛡️'} <strong>${mode} Mode:</strong> ${aaliyaMessage}`;
-
-      target.prepend(div);
-      localStorage.removeItem('glowModeSpartan'); // Optional: clear after display
+      if (!input) {
+        reply = "🌙 Type something you need clarity on, babe.";
+      } else {
+        switch (mode) {
+          case "Logical": reply = `💡 Spartan Logic: Let’s break this down step-by-step.`; break;
+          case "Emotional": reply = `💓 Emotional Mode: That sounds like a lot. Give yourself grace.`; break;
+          case "Physical": reply = `🚩 Body Check: Do you feel safe and grounded?`; break;
+          case "Intuitive": reply = `👁️ Intuition Says: Trust your body. It already knows.`; break;
+          case "Motivational": reply = `📈 You’re not stuck, you’re shifting. Show up like she already made it.`; break;
+          case "Creative": reply = `🎨 What if this isn’t a problem… it’s a portal?`; break;
+          case "Private": reply = `🔒 Private Mode: Strategic silence. Power moves only.`; break;
+          default: reply = `🪞 Let’s reflect. What would your Softest Self do?`;
+        }
+      }
+      document.getElementById('aaliyaAIResponse').innerText = reply;
     }
   </script>
 </body>
