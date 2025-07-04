@@ -40,18 +40,23 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       padding: 20px;
       width: 200px;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
     }
 
     .mode:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 20px #f8bbd0;
+      box-shadow: 0 0 25px #f8bbd0;
     }
 
     .mode h2 {
       margin-top: 0;
       font-size: 1.3em;
       color: #ba68c8;
+    }
+
+    .mode p {
+      font-size: 0.95em;
     }
 
     a.btn {
@@ -63,11 +68,12 @@
       color: white;
       text-decoration: none;
       border-radius: 25px;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     a.btn:hover {
       background-color: #9c27b0;
+      box-shadow: 0 0 10px #ba68c8;
     }
 
     @keyframes pulse {
@@ -82,14 +88,33 @@
   <p>Choose your mood, filter your energy, and unlock your next-level feminine power. GlowFilter helps you date, decide, and elevate with clarity.</p>
 
   <div class="mode-grid">
-    <div class="mode"><h2>🧠 Logical</h2><p>When you need truth, patterns, and hard facts.</p></div>
-    <div class="mode"><h2>💓 Emotional</h2><p>When your heart needs space to feel and heal.</p></div>
-    <div class="mode"><h2>💪 Physical</h2><p>Check your body cues, boundaries, and safety.</p></div>
-    <div class="mode"><h2>🔮 Intuitive</h2><p>Trust the vibe. What does your soul already know?</p></div>
-    <div class="mode"><h2>🔥 Motivational</h2><p>Get clear, energized, and goal-aligned.</p></div>
-    <div class="mode"><h2>🎨 Creative</h2><p>Unlock fun, pleasure, and inspired new solutions.</p></div>
+    <div class="mode" onclick="alert('🧠 You’re in Logical Mode! Trust what’s consistent, not what’s chaotic.')">
+      <h2>🧠 Logical</h2>
+      <p>When you need truth, patterns, and hard facts.</p>
+    </div>
+    <div class="mode" onclick="alert('💓 You’re in Emotional Mode. Be tender with yourself today.')">
+      <h2>💓 Emotional</h2>
+      <p>When your heart needs space to feel and heal.</p>
+    </div>
+    <div class="mode" onclick="alert('💪 Physical Mode activated. Honor your body and boundaries.')">
+      <h2>💪 Physical</h2>
+      <p>Check your body cues, boundaries, and safety.</p>
+    </div>
+    <div class="mode" onclick="alert('🔮 Intuitive Mode engaged. Trust the whisper, not the noise.')">
+      <h2>🔮 Intuitive</h2>
+      <p>Trust the vibe. What does your soul already know?</p>
+    </div>
+    <div class="mode" onclick="alert('🔥 You chose Motivational Mode. Channel that glow into your goals.')">
+      <h2>🔥 Motivational</h2>
+      <p>Get clear, energized, and goal-aligned.</p>
+    </div>
+    <div class="mode" onclick="alert('🎨 Creative Mode! Time to play and express with no pressure.')">
+      <h2>🎨 Creative</h2>
+      <p>Unlock fun, pleasure, and inspired new solutions.</p>
+    </div>
   </div>
 
   <a href="index.html" class="btn">← Back to Home</a>
 </body>
 </html>
+
