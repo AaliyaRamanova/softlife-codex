@@ -4,17 +4,18 @@
   <meta charset="UTF-8">
   <title>Soft Life Aaliya</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="sla.png" type="image/png">
   <style>
     body {
       font-family: 'Georgia', serif;
       background: linear-gradient(to bottom right, #fce4ec, #f3e5f5);
       color: #4a0072;
       text-align: center;
-      padding: 50px;
+      padding: 50px 20px;
     }
 
     h1 {
-      font-size: 2em;
+      font-size: 2.2em;
       margin-bottom: 40px;
       animation: glow 2s ease-in-out infinite;
     }
@@ -26,36 +27,65 @@
     }
 
     .vault-button {
-      padding: 12px 20px;
+      padding: 12px 22px;
       font-size: 16px;
       border-radius: 12px;
       background-color: #d4af37;
       color: white;
       border: none;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      box-shadow: 0 0 12px rgba(0,0,0,0.25);
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
     }
 
     .vault-button:hover {
-      transform: scale(1.05);
+      transform: scale(1.07);
+      box-shadow: 0 0 18px #d4af37, 0 0 30px #f3e5f5;
     }
 
     .nav-links {
-      margin-top: 40px;
+      margin-top: 45px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
     }
 
     .nav-links a {
-      display: inline-block;
-      margin: 10px 12px;
       text-decoration: none;
       color: #4a0072;
       font-weight: bold;
       font-size: 18px;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 2px;
+      background-color: #d4af37;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
     }
 
     .nav-links a:hover {
-      text-decoration: underline;
+      color: #ba68c8;
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    footer {
+      margin-top: 60px;
+      font-size: 14px;
+      color: #7b1fa2;
     }
   </style>
 </head>
@@ -71,9 +101,15 @@
     <a href="ask-aaliya.html">Ask Aaliya</a>
     <a href="glowfilter.html">GlowFilter</a>
     <a href="softlife-guide.html">Workshop</a>
+    <a href="cycle-calendar.html">Cycle Tracker</a>
     <a href="downloads.html">Downloads</a>
+    <a href="detect-profile-check.html">Profile Check</a>
     <a href="divine-domestic.html">Divine Domestic</a>
   </div>
+
+  <footer>
+    © 2025 Soft Life Aaliya 🌸 Designed under moonlight, guided by intuition.
+  </footer>
 
   <script>
     async function checkVault() {
@@ -89,3 +125,4 @@
 
 </body>
 </html>
+
