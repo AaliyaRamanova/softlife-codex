@@ -1,7 +1,4 @@
-from pathlib import Path
-
-# Define the updated HTML content
-html_content = '''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -69,6 +66,9 @@ html_content = '''<!DOCTYPE html>
       font-size: 1em;
       margin-top: 10px;
     }
+    #privateAccessDiv {
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -76,6 +76,14 @@ html_content = '''<!DOCTYPE html>
   <h2>Your Soft Life AI Companion</h2>
   <div id="aaliya-response"></div>
 
+  <!-- Password-Protected Unlock -->
+  <div id="privateAccessDiv" class="section">
+    <input id="privatePasscode" type="password" placeholder="Enter access code..." style="padding: 10px; border-radius: 10px; font-size: 1em;">
+    <button class="button" onclick="submitPrivatePass()">🔐 Unlock Private Coaching</button>
+    <p id="privateError" style="color:#c62828; font-weight:bold;"></p>
+  </div>
+
+  <!-- Ask Me Anything AI Box -->
   <div class="section">
     <h3>💬 Ask Me Anything</h3>
     <textarea id="userPrompt" placeholder="Type your question or situation here..." style="margin-bottom: 10px;"></textarea><br>
@@ -93,6 +101,17 @@ html_content = '''<!DOCTYPE html>
   </div>
 
   <script>
+    function submitPrivatePass() {
+      const entered = document.getElementById("privatePasscode").value.trim().toLowerCase();
+      const error = document.getElementById("privateError");
+      if (entered === "softlifequeen") {
+        localStorage.setItem("glowModeSpartan", "Private");
+        location.reload();
+      } else {
+        error.innerText = "Incorrect passcode. Try again 💔";
+      }
+    }
+
     function toggleSections() {
       const afSection = document.getElementById('alignedAFSection');
       const nutritionSection = document.getElementById('nutritionSection');
@@ -205,10 +224,3 @@ html_content = '''<!DOCTYPE html>
   </script>
 </body>
 </html>
-'''
-
-# Save the file
-file_path = Path("/mnt/data/ask-aaliya.html")
-file_path.write_text(html_content)
-
-file_path.name
