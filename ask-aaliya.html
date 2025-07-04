@@ -54,7 +54,7 @@
       font-weight: bold;
     }
 
-    .advice-box {
+    .advice-box, .journal-box {
       display: none;
       margin: 30px auto;
       padding: 20px;
@@ -64,6 +64,16 @@
       max-width: 600px;
       box-shadow: 0 0 15px #f8bbd0;
       text-align: left;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      border-radius: 10px;
+      font-family: 'Georgia', serif;
+      font-size: 1em;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -81,6 +91,7 @@
     <button class="button" onclick="showAdvice('see')">👁 See Me</button>
     <button class="button" onclick="toggleSections()">🌸 Aligned AF</button>
     <button class="button" onclick="showAdvice('checkin')">🧘🏽 Emotional Check-In</button>
+    <button class="button" onclick="toggleJournal()">📓 Journal</button>
   </div>
 
   <div class="section">
@@ -100,6 +111,13 @@
   <div id="adviceCheckin" class="advice-box">
     <h3>🧘🏽 Emotional Check-In</h3>
     <p>Pause. Inhale slowly. Exhale fully. Ask yourself: what do I need today? Safety? Play? Solitude? Connection? Let the answer rise without judgment. You are your safest home. 🕊️</p>
+  </div>
+
+  <div id="journalSection" class="journal-box">
+    <h3>📓 Your Journal</h3>
+    <textarea id="journalInput" placeholder="Type your thoughts here..."></textarea>
+    <button class="button" onclick="saveJournal()">💾 Save Entry</button>
+    <p id="journalStatus"></p>
   </div>
 
   <!-- Aligned AF Section -->
@@ -142,6 +160,19 @@
       nutritionSection.style.display = show ? 'block' : 'none';
     }
 
+    function toggleJournal() {
+      const journalBox = document.getElementById('journalSection');
+      journalBox.style.display = journalBox.style.display === 'block' ? 'none' : 'block';
+      document.getElementById('journalInput').value = localStorage.getItem('askAaliyaJournal') || '';
+      document.getElementById('journalStatus').textContent = '';
+    }
+
+    function saveJournal() {
+      const journalText = document.getElementById('journalInput').value.trim();
+      localStorage.setItem('askAaliyaJournal', journalText);
+      document.getElementById('journalStatus').textContent = '✨ Saved to memory.';
+    }
+
     function showAdvice(type) {
       const sections = ['adviceHype', 'adviceSee', 'adviceCheckin'];
       sections.forEach(id => document.getElementById(id).style.display = 'none');
@@ -150,6 +181,14 @@
 
     function capitalize(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    // Mood detection from GlowFilter
+    const mood = localStorage.getItem('glowMode');
+    if (mood) {
+      const moodMsg = document.createElement('p');
+      moodMsg.innerHTML = `🌙 You’re in <strong>${mood}</strong> Mode today. AskAaliya is synced with your glow.`;
+      document.body.insertBefore(moodMsg, document.body.children[2]);
     }
   </script>
 </body>
