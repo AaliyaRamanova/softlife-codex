@@ -81,6 +81,7 @@
 
   <h1 class="glow">🪞 Ask Aaliya</h1>
   <h2>Your Soft Life AI Companion</h2>
+  <div id="aaliya-response"></div>
 
   <div class="section">
     <p>AskAaliya is your intuitive, emotional, and spiritual AI support system — designed to help you glow, plan, and protect your peace with grace.</p>
@@ -184,11 +185,40 @@
       return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
+    // Regular Glow Mode
     const mood = localStorage.getItem('glowMode');
     if (mood) {
       const moodMsg = document.createElement('p');
       moodMsg.innerHTML = `🌙 You’re in <strong>${mood}</strong> Mode today. AskAaliya is synced with your glow.`;
       document.body.insertBefore(moodMsg, document.body.children[2]);
+    }
+
+    // Spartan GlowFilter Sync
+    const mode = localStorage.getItem('glowModeSpartan');
+    if (mode) {
+      const aaliyaMessage = {
+        Logical: "🧠 Spartan Logic Activated: Let’s break it down with clarity and facts. What are the patterns here?",
+        Emotional: "🧊 Spartan Emotional Mode: I’m reading your undercurrent. What part of this is triggering or soothing you?",
+        Physical: "🛑 Spartan Body Check: Are you feeling safe, energized, or drained around this situation?",
+        Intuitive: "👁️ Spartan Intuition Online: What does your body know before your brain decides?",
+        Motivational: "📈 Spartan Focus Mode: Is this raising your standards or pulling you off course?",
+        Creative: "🌀 Spartan Flow Check: Are you flowing or forcing? Let’s find a creative pivot.",
+      }[mode];
+
+      const target = document.getElementById('aaliya-response');
+      const div = document.createElement('div');
+      div.style.padding = '20px';
+      div.style.background = '#fce4ec';
+      div.style.color = '#4a148c';
+      div.style.borderRadius = '16px';
+      div.style.margin = '20px auto';
+      div.style.maxWidth = '600px';
+      div.style.boxShadow = '0 0 12px #d4af37';
+      div.style.border = '1px solid #ba68c8';
+      div.style.fontFamily = 'Georgia, serif';
+      div.innerHTML = `🛡️ <strong>Spartan Mode:</strong> ${aaliyaMessage}`;
+      target.prepend(div);
+      localStorage.removeItem('glowModeSpartan'); // Optional: clear after display
     }
   </script>
 </body>
