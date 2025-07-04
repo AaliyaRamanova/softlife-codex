@@ -61,7 +61,7 @@
 
     a.btn {
       display: inline-block;
-      margin-top: 30px;
+      margin-top: 20px;
       padding: 12px 24px;
       font-size: 1em;
       background-color: #ba68c8;
@@ -88,33 +88,41 @@
   <p>Choose your mood, filter your energy, and unlock your next-level feminine power. GlowFilter helps you date, decide, and elevate with clarity.</p>
 
   <div class="mode-grid">
-    <div class="mode" onclick="alert('🧠 You’re in Logical Mode! Trust what’s consistent, not what’s chaotic.')">
+    <div class="mode" onclick="selectMode('Logical')">
       <h2>🧠 Logical</h2>
       <p>When you need truth, patterns, and hard facts.</p>
     </div>
-    <div class="mode" onclick="alert('💓 You’re in Emotional Mode. Be tender with yourself today.')">
+    <div class="mode" onclick="selectMode('Emotional')">
       <h2>💓 Emotional</h2>
       <p>When your heart needs space to feel and heal.</p>
     </div>
-    <div class="mode" onclick="alert('💪 Physical Mode activated. Honor your body and boundaries.')">
+    <div class="mode" onclick="selectMode('Physical')">
       <h2>💪 Physical</h2>
       <p>Check your body cues, boundaries, and safety.</p>
     </div>
-    <div class="mode" onclick="alert('🔮 Intuitive Mode engaged. Trust the whisper, not the noise.')">
+    <div class="mode" onclick="selectMode('Intuitive')">
       <h2>🔮 Intuitive</h2>
       <p>Trust the vibe. What does your soul already know?</p>
     </div>
-    <div class="mode" onclick="alert('🔥 You chose Motivational Mode. Channel that glow into your goals.')">
+    <div class="mode" onclick="selectMode('Motivational')">
       <h2>🔥 Motivational</h2>
       <p>Get clear, energized, and goal-aligned.</p>
     </div>
-    <div class="mode" onclick="alert('🎨 Creative Mode! Time to play and express with no pressure.')">
+    <div class="mode" onclick="selectMode('Creative')">
       <h2>🎨 Creative</h2>
       <p>Unlock fun, pleasure, and inspired new solutions.</p>
     </div>
   </div>
 
+  <a href="ask-aaliya.html" class="btn">💬 Ask Aaliya for Clarity</a>
   <a href="index.html" class="btn">← Back to Home</a>
+
+  <script>
+    function selectMode(mode) {
+      localStorage.setItem('glowMode', mode);
+      alert(`✨ You selected ${mode} Mode!`);
+    }
+  </script>
 </body>
 </html>
 
