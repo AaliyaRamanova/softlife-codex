@@ -93,6 +93,7 @@
     <button class="button" onclick="toggleSections()">🌸 Aligned AF</button>
     <button class="button" onclick="showAdvice('checkin')">🧘🏽 Emotional Check-In</button>
     <button class="button" onclick="toggleJournal()">📓 Journal</button>
+    <button class="button" onclick="unlockPrivateMode()" title="Shhh...">🔐 Unlock Private Coaching</button>
   </div>
 
   <div class="section">
@@ -160,6 +161,11 @@
       const show = afSection.style.display === 'none';
       afSection.style.display = show ? 'block' : 'none';
       nutritionSection.style.display = show ? 'block' : 'none';
+    }
+
+    function unlockPrivateMode() {
+      localStorage.setItem('glowModeSpartan', 'Private');
+      location.reload();
     }
 
     function toggleJournal() {
