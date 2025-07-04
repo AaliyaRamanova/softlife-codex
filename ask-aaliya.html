@@ -98,12 +98,10 @@
       <h3>💖 Hype Mode</h3>
       <p>You’re not just pretty — you’re purposeful. Keep showing up like the universe wrote poetry about your glow.</p>
     </div>
-
     <div id="adviceSee" class="advice-box">
       <h3>👁 I See You</h3>
       <p>I see your softness and strength. You don’t need to do more to be worthy — you already are.</p>
     </div>
-
     <div id="adviceCheckin" class="advice-box">
       <h3>🧘🏽 Emotional Check-In</h3>
       <p>Inhale. Exhale. What do you need today? Safety? Play? Boundaries? Let it rise. You are your safest home.</p>
@@ -120,8 +118,16 @@
   <div class="section">
     <h3>🧠 Ask Aaliya (GPT)</h3>
     <textarea id="gptPrompt" placeholder="Type your real question..."></textarea><br>
-    <button class="button" onclick="askAaliyaGPT()">💬 Ask GPT</button>
+    <button class="button" id="askButton">💬 Ask GPT</button>
     <div id="gptReply" class="typing" style="margin-top: 20px; max-width: 600px; margin: auto; font-style: italic; color: #4a0072;"></div>
+  </div>
+
+  <div class="nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="glowfilter.html">🌈 GlowFilter</a>
+    <a href="ask-aaliya.html">💬 Ask Aaliya</a>
+    <a href="downloads.html">📥 Downloads</a>
+    <a href="softlife-guide.html">📚 Soft Life Guide</a>
   </div>
 
   <script>
@@ -176,6 +182,8 @@
         console.error(err);
       }
     }
+
+    document.getElementById("askButton").addEventListener("click", askAaliyaGPT);
   </script>
 </body>
 </html>
