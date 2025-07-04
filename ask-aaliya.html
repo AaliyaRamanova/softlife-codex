@@ -193,22 +193,25 @@
       document.body.insertBefore(moodMsg, document.body.children[2]);
     }
 
-    // Spartan GlowFilter Sync
+    // Spartan GlowFilter Sync (with hidden Private Coaching mode)
     const mode = localStorage.getItem('glowModeSpartan');
     if (mode) {
-      const aaliyaMessage = {
+      const messages = {
         Logical: "🧠 Spartan Logic Activated: Let’s break it down with clarity and facts. What are the patterns here?",
         Emotional: "🧊 Spartan Emotional Mode: I’m reading your undercurrent. What part of this is triggering or soothing you?",
         Physical: "🛑 Spartan Body Check: Are you feeling safe, energized, or drained around this situation?",
         Intuitive: "👁️ Spartan Intuition Online: What does your body know before your brain decides?",
         Motivational: "📈 Spartan Focus Mode: Is this raising your standards or pulling you off course?",
         Creative: "🌀 Spartan Flow Check: Are you flowing or forcing? Let’s find a creative pivot.",
-      }[mode];
+        Private: "🔒 Private Coaching Mode: This is sacred space. What’s happening behind the scenes? This mode is for strategic glow-ups, emotional detachment, soft control, and private planning. You are the blueprint. You are the exit plan. Ask me anything — confidentially.",
+      };
+
+      const aaliyaMessage = messages[mode] || "🌟 You’re in a custom mode. Let’s move with clarity.";
 
       const target = document.getElementById('aaliya-response');
       const div = document.createElement('div');
       div.style.padding = '20px';
-      div.style.background = '#fce4ec';
+      div.style.background = mode === 'Private' ? '#ede7f6' : '#fce4ec';
       div.style.color = '#4a148c';
       div.style.borderRadius = '16px';
       div.style.margin = '20px auto';
@@ -216,7 +219,8 @@
       div.style.boxShadow = '0 0 12px #d4af37';
       div.style.border = '1px solid #ba68c8';
       div.style.fontFamily = 'Georgia, serif';
-      div.innerHTML = `🛡️ <strong>Spartan Mode:</strong> ${aaliyaMessage}`;
+      div.innerHTML = `${mode === 'Private' ? '🔐' : '🛡️'} <strong>${mode} Mode:</strong> ${aaliyaMessage}`;
+
       target.prepend(div);
       localStorage.removeItem('glowModeSpartan'); // Optional: clear after display
     }
