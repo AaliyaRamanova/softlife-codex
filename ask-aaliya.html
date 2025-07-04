@@ -61,7 +61,6 @@
   <h1 class="glow">🪞 Ask Aaliya</h1>
   <h2>Your Soft Life AI Companion</h2>
 
-  <!-- Ask Me Anything GPT Button (Live GPT) -->
   <div class="section">
     <h3>🧠 Ask Aaliya (GPT)</h3>
     <textarea id="gptPrompt" placeholder="Type your real question..."></textarea><br>
@@ -81,13 +80,13 @@
     async function askAaliyaGPT() {
       const prompt = document.getElementById("gptPrompt").value.trim();
       const outputBox = document.getElementById("gptReply");
+
       if (!prompt) {
         outputBox.innerText = "🌙 Type your heart out first, babe.";
         return;
       }
 
       const mode = localStorage.getItem("glowModeSpartan") || localStorage.getItem("glowMode") || "Creative";
-
       outputBox.innerText = "✨ Typing Ask Aaliya's insight...";
 
       try {
@@ -113,4 +112,3 @@
   </script>
 </body>
 </html>
-
