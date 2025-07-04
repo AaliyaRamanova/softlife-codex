@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spartan Private – GlowFilter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #1c1c1c, #2c003e);
+      font-family: 'Georgia', serif;
+      color: #f3e5f5;
+      text-align: center;
+      padding: 5%;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      color: #e1bee7;
+      animation: pulse 2s infinite;
+    }
+
+    p {
+      font-size: 1.05em;
+      max-width: 700px;
+      margin: auto;
+      margin-bottom: 40px;
+      color: #d1c4e9;
+    }
+
+    .mode-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .mode {
+      background: #2e1a47;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(255,255,255,0.05);
+      padding: 24px;
+      width: 220px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .mode:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #ba68c8;
+    }
+
+    .mode h2 {
+      margin-top: 0;
+      font-size: 1.3em;
+      color: #f48fb1;
+    }
+
+    .mode p {
+      font-size: 0.95em;
+      color: #ede7f6;
+    }
+
+    a.btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 1em;
+      background-color: #6a1b9a;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    a.btn:hover {
+      background-color: #8e24aa;
+      box-shadow: 0 0 10px #ce93d8;
+    }
+
+    @keyframes pulse {
+      0% { text-shadow: 0 0 5px #9c27b0; }
+      50% { text-shadow: 0 0 20px #ce93d8; }
+      100% { text-shadow: 0 0 5px #9c27b0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🛡️ Spartan Private Filter</h1>
+  <p>This is your decision shield. Choose a mode to decode the situation. Whether it's dating, money, or boundaries—Spartan GlowFilter gives clarity without chaos.</p>
+
+  <div class="mode-grid">
+    <div class="mode" onclick="selectMode('Logical')">
+      <h2>⚖️ Logical</h2>
+      <p>Is this consistent, proven, and aligned with your standards?</p>
+    </div>
+    <div class="mode" onclick="selectMode('Emotional')">
+      <h2>🧊 Emotional</h2>
+      <p>How do you *really* feel under the surface? Triggered or calm?</p>
+    </div>
+    <div class="mode" onclick="selectMode('Physical')">
+      <h2>🛑 Physical</h2>
+      <p>Do you feel safe, respected, and grounded in your body?</p>
+    </div>
+    <div class="mode" onclick="selectMode('Intuitive')">
+      <h2>👁️ Intuitive</h2>
+      <p>What does your body or soul know *before* the logic kicks in?</p>
+    </div>
+    <div class="mode" onclick="selectMode('Motivational')">
+      <h2>📈 Motivational</h2>
+      <p>Does this elevate you or distract you from your goals?</p>
+    </div>
+    <div class="mode" onclick="selectMode('Creative')">
+      <h2>🌀 Creative</h2>
+      <p>Can you flow with this or are you forcing something fake?</p>
+    </div>
+  </div>
+
+  <a href="ask-aaliya.html" class="btn">💬 Spartan Ask Mode</a>
+  <a href="index.html" class="btn">← Back to Home</a>
+
+  <script>
+    function selectMode(mode) {
+      localStorage.setItem('glowModeSpartan', mode);
+    }
+  </script>
+</body>
+</html>
