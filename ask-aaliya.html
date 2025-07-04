@@ -46,17 +46,6 @@
       color: #4a0072;
       font-weight: bold;
     }
-    .advice-box, .journal-box {
-      display: none;
-      margin: 30px auto;
-      padding: 20px;
-      background: #fff;
-      color: #4a0072;
-      border-radius: 15px;
-      max-width: 600px;
-      box-shadow: 0 0 15px #f8bbd0;
-      text-align: left;
-    }
     textarea {
       width: 100%;
       height: 100px;
@@ -66,30 +55,18 @@
       font-size: 1em;
       margin-top: 10px;
     }
-    #privateAccessDiv {
-      margin-top: 20px;
-    }
   </style>
 </head>
 <body>
   <h1 class="glow">🪞 Ask Aaliya</h1>
   <h2>Your Soft Life AI Companion</h2>
-  <div id="aaliya-response"></div>
 
-  <!-- Password-Protected Unlock -->
-  <div id="privateAccessDiv" class="section">
-    <input id="privatePasscode" type="password" placeholder="Enter access code..." style="padding: 10px; border-radius: 10px; font-size: 1em;">
-    <button class="button" onclick="submitPrivatePass()">🔐 Unlock Private Coaching</button>
-    <p id="privateError" style="color:#c62828; font-weight:bold;"></p>
-  </div>
-
-  <!-- Ask Me Anything AI Box -->
+  <!-- Ask Me Anything GPT Button (Live GPT) -->
   <div class="section">
-    <h3>💬 Ask Me Anything</h3>
-    <textarea id="userPrompt" placeholder="Type your question or situation here..." style="margin-bottom: 10px;"></textarea><br>
-    <button class="button" onclick="generateAaliyaResponse()">🧠 Get Aaliya’s Insight</button>
-    <div id="aaliyaAIResponse" style="margin-top: 20px; max-width: 600px; margin-left: auto; margin-right: auto; font-style: italic; color: #4a0072;"></div>
-    <button class="button" onclick="playAaliyaVoice()" style="margin-top:10px;">🔊 Play Voice</button>
+    <h3>🧠 Ask Aaliya (GPT)</h3>
+    <textarea id="gptPrompt" placeholder="Type your real question..."></textarea><br>
+    <button class="button" onclick="askAaliyaGPT()">💬 Ask GPT</button>
+    <div id="gptReply" style="margin-top: 20px; max-width: 600px; margin: auto; font-style: italic; color: #4a0072;"></div>
   </div>
 
   <div class="nav">
@@ -101,126 +78,39 @@
   </div>
 
   <script>
-    function submitPrivatePass() {
-      const entered = document.getElementById("privatePasscode").value.trim().toLowerCase();
-      const error = document.getElementById("privateError");
-      if (entered === "softlifequeen") {
-        localStorage.setItem("glowModeSpartan", "Private");
-        location.reload();
-      } else {
-        error.innerText = "Incorrect passcode. Try again 💔";
+    async function askAaliyaGPT() {
+      const prompt = document.getElementById("gptPrompt").value.trim();
+      const outputBox = document.getElementById("gptReply");
+      if (!prompt) {
+        outputBox.innerText = "🌙 Type your heart out first, babe.";
+        return;
       }
-    }
 
-    function toggleSections() {
-      const afSection = document.getElementById('alignedAFSection');
-      const nutritionSection = document.getElementById('nutritionSection');
-      const show = afSection.style.display === 'none';
-      afSection.style.display = show ? 'block' : 'none';
-      nutritionSection.style.display = show ? 'block' : 'none';
-    }
+      const mode = localStorage.getItem("glowModeSpartan") || localStorage.getItem("glowMode") || "Creative";
 
-    function unlockPrivateMode() {
-      localStorage.setItem('glowModeSpartan', 'Private');
-      location.reload();
-    }
+      outputBox.innerText = "✨ Typing Ask Aaliya's insight...";
 
-    function toggleJournal() {
-      const journalBox = document.getElementById('journalSection');
-      journalBox.style.display = journalBox.style.display === 'block' ? 'none' : 'block';
-      document.getElementById('journalInput').value = localStorage.getItem('askAaliyaJournal') || '';
-      document.getElementById('journalStatus').textContent = '';
-    }
+      try {
+        const response = await fetch("/api/ask-aaliya", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            prompt: prompt,
+            mode: mode
+          })
+        });
 
-    function saveJournal() {
-      const journalText = document.getElementById('journalInput').value.trim();
-      localStorage.setItem('askAaliyaJournal', journalText);
-      document.getElementById('journalStatus').textContent = '✨ Saved to memory.';
-    }
-
-    function showAdvice(type) {
-      const sections = ['adviceHype', 'adviceSee', 'adviceCheckin'];
-      sections.forEach(id => document.getElementById(id).style.display = 'none');
-      document.getElementById(`advice${capitalize(type)}`).style.display = 'block';
-    }
-
-    function capitalize(str) {
-      return str.charAt(0).toUpperCase() + str.slice(1);
-    }
-
-    function generateAaliyaResponse() {
-      const input = document.getElementById('userPrompt').value.trim();
-      const mode = localStorage.getItem('glowModeSpartan') || localStorage.getItem('glowMode') || "Creative";
-      let reply = "";
-
-      if (!input) {
-        reply = "🌙 Type something you need clarity on, babe.";
-      } else {
-        switch (mode) {
-          case "Logical": reply = `💡 Spartan Logic: Let’s break this down step-by-step.`; break;
-          case "Emotional": reply = `💓 Emotional Mode: That sounds like a lot. Give yourself grace.`; break;
-          case "Physical": reply = `🛑 Body Check: Do you feel safe and grounded?`; break;
-          case "Intuitive": reply = `👁️ Intuition Says: Trust your body. It already knows.`; break;
-          case "Motivational": reply = `📈 You’re not stuck, you’re shifting. Show up like she already made it.`; break;
-          case "Creative": reply = `🎨 What if this isn’t a problem… it’s a portal?`; break;
-          case "Private": reply = `🔒 Private Mode: Strategic silence. Power moves only.`; break;
-          default: reply = `🪞 Let’s reflect. What would your Softest Self do?`;
-        }
+        const data = await response.json();
+        const reply = data.reply || "💤 Something didn’t vibe right. Try again.";
+        outputBox.innerText = reply;
+      } catch (err) {
+        outputBox.innerText = "⚠️ Error reaching Ask Aaliya. Try again later.";
+        console.error(err);
       }
-      document.getElementById('aaliyaAIResponse').innerText = reply;
-    }
-
-    function playAaliyaVoice() {
-      const responseText = document.getElementById('aaliyaAIResponse')?.innerText || "";
-      if (!responseText) return;
-
-      const voiceMessage = new SpeechSynthesisUtterance(responseText);
-      voiceMessage.lang = 'en-US';
-      voiceMessage.rate = 0.95;
-      voiceMessage.pitch = 1.1;
-
-      const voices = speechSynthesis.getVoices();
-      const softVoice = voices.find(v => v.name.includes("Female") || v.name.includes("Samantha") || v.name.includes("Google US English"));
-      if (softVoice) voiceMessage.voice = softVoice;
-
-      speechSynthesis.speak(voiceMessage);
-    }
-
-    const mood = localStorage.getItem('glowMode');
-    if (mood) {
-      const moodMsg = document.createElement('p');
-      moodMsg.innerHTML = `🌙 You’re in <strong>${mood}</strong> Mode today. AskAaliya is synced with your glow.`;
-      document.body.insertBefore(moodMsg, document.body.children[2]);
-    }
-
-    const mode = localStorage.getItem('glowModeSpartan');
-    if (mode) {
-      const messages = {
-        Logical: "🧠 Spartan Logic Activated: Let’s break it down with clarity and facts. What are the patterns here?",
-        Emotional: "🧊 Spartan Emotional Mode: I’m reading your undercurrent. What part of this is triggering or soothing you?",
-        Physical: "🛑 Spartan Body Check: Are you feeling safe, energized, or drained around this situation?",
-        Intuitive: "👁️ Spartan Intuition Online: What does your body know before your brain decides?",
-        Motivational: "📈 Spartan Focus Mode: Is this raising your standards or pulling you off course?",
-        Creative: "🌀 Spartan Flow Check: Are you flowing or forcing? Let’s find a creative pivot.",
-        Private: "🔒 Private Coaching Mode: This is sacred space. This mode is for strategic glow-ups, emotional detachment, and planning."
-      };
-
-      const aaliyaMessage = messages[mode] || "🌟 You’re in a custom mode. Let’s move with clarity.";
-      const target = document.getElementById('aaliya-response');
-      const div = document.createElement('div');
-      div.style.padding = '20px';
-      div.style.background = mode === 'Private' ? '#ede7f6' : '#fce4ec';
-      div.style.color = '#4a148c';
-      div.style.borderRadius = '16px';
-      div.style.margin = '20px auto';
-      div.style.maxWidth = '600px';
-      div.style.boxShadow = '0 0 12px #d4af37';
-      div.style.border = '1px solid #ba68c8';
-      div.style.fontFamily = 'Georgia, serif';
-      div.innerHTML = `${mode === 'Private' ? '🔐' : '🛡️'} <strong>${mode} Mode:</strong> ${aaliyaMessage}`;
-      target.prepend(div);
-      localStorage.removeItem('glowModeSpartan');
     }
   </script>
 </body>
 </html>
+
