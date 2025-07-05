@@ -1,11 +1,9 @@
-# Re-run after environment reset to recreate the file
-html_code = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Ask Aaliya | Soft Life Aaliya</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
       background: linear-gradient(to bottom right, #fff3e0, #fce4ec);
@@ -152,9 +150,7 @@ html_code = """
         try {
           const response = await fetch("/api/ask-aaliya", {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ prompt, mode })
           });
 
@@ -177,11 +173,3 @@ html_code = """
   </script>
 </body>
 </html>
-"""
-
-# Save to file
-path = "/mnt/data/ask-aaliya.html"
-with open(path, "w") as file:
-    file.write(html_code)
-
-path
