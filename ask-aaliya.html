@@ -1,3 +1,5 @@
+# Re-run after environment reset to recreate the file
+html_code = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,15 +38,6 @@
     }
     .section {
       margin-top: 40px;
-    }
-    .nav {
-      margin-top: 40px;
-    }
-    .nav a {
-      margin: 0 12px;
-      text-decoration: none;
-      color: #4a0072;
-      font-weight: bold;
     }
     .advice-box, .journal-box {
       display: none;
@@ -122,14 +115,6 @@
     <div id="gptReply" class="typing" style="margin-top: 20px; max-width: 600px; margin: auto; font-style: italic; color: #4a0072;"></div>
   </div>
 
-  <div class="nav">
-    <a href="index.html">🏠 Home</a>
-    <a href="glowfilter.html">🌈 GlowFilter</a>
-    <a href="ask-aaliya.html">💬 Ask Aaliya</a>
-    <a href="downloads.html">📥 Downloads</a>
-    <a href="softlife-guide.html">📚 Soft Life Guide</a>
-  </div>
-
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       function showAdvice(type) {
@@ -192,3 +177,11 @@
   </script>
 </body>
 </html>
+"""
+
+# Save to file
+path = "/mnt/data/ask-aaliya.html"
+with open(path, "w") as file:
+    file.write(html_code)
+
+path
