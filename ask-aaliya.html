@@ -113,63 +113,7 @@
     <div id="gptReply" class="typing" style="margin-top: 20px; max-width: 600px; margin: auto; font-style: italic; color: #4a0072;"></div>
   </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      function showAdvice(type) {
-        const boxes = ['adviceHype', 'adviceSee', 'adviceCheckin'];
-        boxes.forEach(id => document.getElementById(id).style.display = 'none');
-        document.getElementById(`advice${type.charAt(0).toUpperCase() + type.slice(1)}`).style.display = 'block';
-      }
-
-      function toggleJournal() {
-        const journal = document.getElementById('journalSection');
-        journal.style.display = journal.style.display === 'block' ? 'none' : 'block';
-        document.getElementById('journalInput').value = localStorage.getItem('askAaliyaJournal') || '';
-        document.getElementById('journalStatus').textContent = '';
-      }
-
-      function saveJournal() {
-        const text = document.getElementById('journalInput').value.trim();
-        localStorage.setItem('askAaliyaJournal', text);
-        document.getElementById('journalStatus').textContent = '✨ Saved to memory.';
-      }
-
-      async function askAaliyaGPT() {
-        const prompt = document.getElementById("gptPrompt").value.trim();
-        const outputBox = document.getElementById("gptReply");
-
-        if (!prompt) {
-          outputBox.innerText = "🌙 Type your heart out first, babe.";
-          return;
-        }
-
-        const mode = localStorage.getItem("glowModeSpartan") || localStorage.getItem("glowMode") || "Creative";
-        outputBox.classList.add("typing");
-        outputBox.innerText = "✨ Typing Ask Aaliya's insight...";
-
-        try {
-          const response = await fetch("/api/ask-aaliya", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ prompt, mode })
-          });
-
-          const data = await response.json();
-          const reply = data.reply || "💤 Something didn’t vibe right. Try again.";
-          outputBox.classList.remove("typing");
-          outputBox.innerText = reply;
-        } catch (err) {
-          outputBox.classList.remove("typing");
-          outputBox.innerText = "⚠️ Error reaching Ask Aaliya. Try again later.";
-          console.error(err);
-        }
-      }
-
-      document.getElementById("askButton").addEventListener("click", askAaliyaGPT);
-      window.showAdvice = showAdvice;
-      window.toggleJournal = toggleJournal;
-      window.saveJournal = saveJournal;
-    });
-  </script>
+  <!-- ✅ Load your JavaScript file here -->
+  <script src="ask-aaliya.js"></script>
 </body>
 </html>
