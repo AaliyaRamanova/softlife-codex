@@ -1,42 +1,63 @@
-// /api/ask-aaliya.js
-
-export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+document.addEventListener("DOMContentLoaded", function () {
+  // 💖 Advice buttons
+  function showAdvice(type) {
+    const boxes = ['adviceHype', 'adviceSee', 'adviceCheckin'];
+    boxes.forEach(id => document.getElementById(id).style.display = 'none');
+    const box = document.getElementById(`advice${type.charAt(0).toUpperCase() + type.slice(1)}`);
+    if (box) box.style.display = 'block';
   }
 
-  const { prompt, mode } = req.body;
-
-  if (!process.env.OPENAI_API_KEY) {
-    return res.status(500).json({ error: 'Missing OpenAI API key' });
+  // 📓 Journal
+  function toggleJournal() {
+    const journal = document.getElementById('journalSection');
+    journal.style.display = journal.style.display === 'block' ? 'none' : 'block';
+    document.getElementById('journalInput').value = localStorage.getItem('askAaliyaJournal') || '';
+    document.getElementById('journalStatus').textContent = '';
   }
 
-  try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: 'gpt-4o',
-        messages: [
-          {
-            role: 'system',
-            content: `You are Ask Aaliya, a poetic, grounded, intuitive soft life coach who blends feminine energy and emotional depth. Respond in a clear, soft, feminine tone with practical glow-up wisdom. Current mode: ${mode || 'Creative'}`,
-          },
-          { role: 'user', content: prompt }
-        ],
-        temperature: 0.8,
-        max_tokens: 300,
-      }),
-    });
-
-    const data = await response.json();
-    const reply = data.choices?.[0]?.message?.content || 'No reply returned.';
-    res.status(200).json({ reply });
-  } catch (error) {
-    console.error('OpenAI error:', error);
-    res.status(500).json({ error: 'Error contacting OpenAI' });
+  function saveJournal() {
+    const text = document.getElementById('journalInput').value.trim();
+    localStorage.setItem('askAaliyaJournal', text);
+    document.getElementById('journalStatus').textContent = '✨ Saved to memory.';
   }
-}
+
+  // 💬 GPT Response
+  async function askAaliyaGPT() {
+    const prompt = document.getElementById("gptPrompt").value.trim();
+    const outputBox = document.getElementById("gptReply");
+
+    if (!prompt) {
+      outputBox.innerText = "🌙 Type your heart out first, babe.";
+      return;
+    }
+
+    const mode = localStorage.getItem("glowModeSpartan") || localStorage.getItem("glowMode") || "Creative";
+    outputBox.classList.add("typing");
+    outputBox.innerText = "✨ Typing Ask Aaliya's insight...";
+
+    try {
+      const response = await fetch("/api/ask-aaliya", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ prompt, mode })
+      });
+
+      const data = await response.json();
+      const reply = data.reply || "💤 Something didn’t vibe right. Try again.";
+      outputBox.classList.remove("typing");
+      outputBox.innerText = reply;
+    } catch (err) {
+      outputBox.classList.remove("typing");
+      outputBox.innerText = "⚠️ Error reaching Ask Aaliya. Try again later.";
+      console.error(err);
+    }
+  }
+
+  // 🔗 Event Listeners
+  document.getElementById("askButton")?.addEventListener("click", askAaliyaGPT);
+  window.showAdvice = showAdvice;
+  window.toggleJournal = toggleJournal;
+  window.saveJournal = saveJournal;
+});
